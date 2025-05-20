@@ -18,6 +18,17 @@
       };
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      /* Oculta barras de rolagem, mas mantém a rolagem funcional */
+      html, body {
+        scrollbar-width: none;       /* Firefox */
+        -ms-overflow-style: none;    /* Internet Explorer 10+ */
+      }
+
+      body::-webkit-scrollbar {
+        display: none;               /* Chrome, Safari, Opera */
+      }
+    </style>
   </head>
   <body class="bg-slate-100 text-gray-900 font-inter">
     <div class="flex h-full min-h-screen w-screen p-12">
