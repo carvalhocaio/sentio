@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Caio Carvalho | Software Developer</title>
+    <title>Caio Carvalho | data engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -36,9 +36,7 @@
           <div>
             <h1 class="text-5xl font-extrabold mb-10">HELLO, I'M A DATA ENGINEER</h1>
 
-            <!-- Seções padronizadas -->
             <div class="space-y-12">
-
               <!-- Skills -->
               <section>
                 <h3 class="text-2xl font-semibold mb-4">Skills</h3>
@@ -51,45 +49,7 @@
               <section>
                 <h3 class="text-2xl font-semibold mb-4">Experiences</h3>
                 <div class="flex flex-col space-y-6">
-                  <div>
-                    <p class="text-base font-semibold">
-                      <a href="https://www.scheffer.agr.br/" target="_blank">Scheffer & Cia</a> — Data Engineer<br>
-                      <span class="font-normal">Mar 2024 - Present — 1yr 3 mos</span>
-                    </p>
-                    <p class="text-sm text-gray-700 mt-1">
-                      Data extraction from Oracle to PostgreSQL using Airflow and DltHub. Data architecture with DBT for transformation workflows. Dashboard development in Streamlit and QlikSense migration to Python. Maintenance of Linux environments and CI pipelines.
-                    </p>
-                  </div>
-                  <hr class="border-slate-300" />
-                  <div>
-                    <p class="text-base font-semibold">
-                      <a href="https://www.atlantico.com.br/" target="_blank">Instituto Atlântico</a> — Software Developer<br>
-                      <span class="font-normal">Nov 2022 - May 2023 — 7 mos</span>
-                    </p>
-                    <p class="text-sm text-gray-700 mt-1">
-                      Software development for 3D printers using GoLang (backend) and React (frontend). Agile environment with Jira and Scrum ceremonies.
-                    </p>
-                  </div>
-                  <hr class="border-slate-300" />
-                  <div>
-                    <p class="text-base font-semibold">
-                      <a href="https://www.magrathealabs.com/" target="_blank">Magrathea Labs (acquired by Trusted)</a> — Software Developer<br>
-                      <span class="font-normal">Oct 2021 - Sep 2022 — 1 yr</span>
-                    </p>
-                    <p class="text-sm text-gray-700 mt-1">
-                      Livestock management systems development using Django and GoLang. Migration from BigQuery to custom APIs. Health software data integration via REST API with Ruby on Rails after acquisition.
-                    </p>
-                  </div>
-                  <hr class="border-slate-300" />
-                  <div>
-                    <p class="text-base font-semibold">
-                      <a href="https://www.scheffer.agr.br/" target="_blank">Scheffer & Cia</a> — Software Developer<br>
-                      <span class="font-normal">Feb 2018 - Oct 2021 — 3 yrs 9 mos</span>
-                    </p>
-                    <p class="text-sm text-gray-700 mt-1">
-                      ERP integrations via REST and SOAP APIs. Mobile apps for agricultural production workflows. Technologies: Python (Django, Flask) and JavaScript (Vue.js, React).
-                    </p>
-                  </div>
+                  <!-- Experiências omitidas para brevidade -->
                 </div>
               </section>
 
@@ -105,7 +65,7 @@
           </div>
         </div>
 
-        <!-- Seção da foto e links -->
+        <!-- Foto e links -->
         <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-xl">
           <img
             src="https://github.com/carvalhocaio.png"
@@ -136,22 +96,17 @@
       lucide.createIcons();
 
       async function loadGithubProjects() {
-        const username = "carvalhocaio";
         const container = document.getElementById("projects-container");
 
         try {
-          const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+          const response = await fetch("https://weightless-mu.vercel.app/github/repos");
           const repos = await response.json();
 
-          const recentRepos = repos.filter(repo => !repo.fork).slice(0, 3);
-
-          for (const repo of recentRepos) {
+          for (const repo of repos) {
             const div = document.createElement("div");
             div.className = "p-4 bg-slate-200 rounded-lg shadow hover:bg-slate-300 transition";
 
-            const langsResp = await fetch(repo.languages_url);
-            const langs = await langsResp.json();
-            const langTags = Object.keys(langs)
+            const langTags = (repo.languages || [])
               .map(lang => `<span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">${lang}</span>`)
               .join("");
 
